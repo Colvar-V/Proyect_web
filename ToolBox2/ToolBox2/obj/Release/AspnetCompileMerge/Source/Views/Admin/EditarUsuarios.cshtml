@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "EditarUsuarios";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+<div class="fondotext">
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/Pages/Usuarios.js"></script>
+    <div>
+        <h2>EditarUsuarios</h2>
+    </div>
+    <br />
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Id</label>
+                <input type="text" id="Id" class="form-control" name="Id" readonly="readonly">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Nombre</label>
+                <input type="text" id="Nombre" class="form-control" name="Nombre">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Cargo</label>
+                <input type="text" id="Cargo" class="form-control" name="Cargo">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Correo</label>
+                <input type="text" id="Correo" class="form-control" name="Correo">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Usuario</label>
+                <input type="text" id="Usuario" class="form-control" name="Usuario">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Contraseña</label>
+                <input type="password" id="Contrasena" class="form-control" name="Contrasena">
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Telefono</label>
+                <input type="text" id="Telefono" class="form-control" name="Telefono">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Id del Proyecto</label>
+                <input type="text" id="Id_proy" class="form-control" name="Id_proy">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var idEmpleado = getParamenterByName("Id");
+                var nombreEmpleado = getParamenterByName("Nombre");
+                var cargoEmpleado = getParamenterByName("Cargo");
+                var telefonoEmpleado = getParamenterByName("Telefono");
+                var correoEmpleado = getParamenterByName("Correo");
+                var usuarioEmpleado = getParamenterByName("Usuario");
+                var ContrasenaEmpleado = getParamenterByName("Contrasena");
+                var Id_proyEmpleado = getParamenterByName("Id_proy");
+
+                LlenarFormulario(idEmpleado, nombreEmpleado, cargoEmpleado, telefonoEmpleado, correoEmpleado, usuarioEmpleado, ContrasenaEmpleado, Id_proyEmpleado);
+            });
+        </script>
+        <div class="row">
+            <div class="col-sm">
+                <div class="alert alert-primary" role="alert">
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+    <div class="container">
+        <input type="button" value="Actualizar" class="btn btn-primary" onclick="UpdateUser()">
+    </div>
+</div>

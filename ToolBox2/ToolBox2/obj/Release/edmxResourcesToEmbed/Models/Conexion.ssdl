@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ToolBoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="COORDINADOR">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="50" />
+    <Property Name="Contraseña" Type="varbinary" MaxLength="200" />
+    <Property Name="Telefono" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="EQUIPOS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Serial" Type="varchar" MaxLength="30" />
+    <Property Name="Tipo" Type="varchar" MaxLength="20" />
+    <Property Name="Id_Mode" Type="int" />
+    <Property Name="Id_Proyecto" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Error_Falla">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="HERRA_PROY">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Proy" Type="int" />
+    <Property Name="Id_Herr" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HERRAMIENTA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MARCA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cel_soporte" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Modelo" Type="varchar" MaxLength="30" />
+    <Property Name="Id_Marca" Type="int" Nullable="false" />
+    <Property Name="Componentes" Type="varchar" MaxLength="500" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Pre_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id_Modelo" Type="int" />
+    <Property Name="Id_Error" Type="int" />
+  </EntityType>
+  <EntityType Name="PROYECTO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Id_Coord" Type="int" />
+    <Property Name="Informacion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TECN_PROYECTO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_proy" Type="int" />
+    <Property Name="Id_tecn" Type="int" />
+  </EntityType>
+  <EntityType Name="TECNICO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cargo" Type="varchar" MaxLength="50" />
+    <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contraseña" Type="varbinary" MaxLength="200" Nullable="false" />
+    <Property Name="Telefono" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="fk_Coord">
+    <End Role="COORDINADOR" Type="Self.COORDINADOR" Multiplicity="0..1" />
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COORDINADOR">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PROYECTO">
+        <PropertyRef Name="Id_Coord" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EQUIPOS_mode">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EQUIPOS">
+        <PropertyRef Name="Id_Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EQUIPOS_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EQUIPOS">
+        <PropertyRef Name="Id_Proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_HERRA_PROY_herr">
+    <End Role="HERRAMIENTA" Type="Self.HERRAMIENTA" Multiplicity="0..1" />
+    <End Role="HERRA_PROY" Type="Self.HERRA_PROY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HERRAMIENTA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HERRA_PROY">
+        <PropertyRef Name="Id_Herr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_HERRA_PROY_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="HERRA_PROY" Type="Self.HERRA_PROY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HERRA_PROY">
+        <PropertyRef Name="Id_Proy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MODELO_marca">
+    <End Role="MARCA" Type="Self.MARCA" Multiplicity="1" />
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARCA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODELO">
+        <PropertyRef Name="Id_Marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pre_Error_Error">
+    <End Role="Error_Falla" Type="Self.Error_Falla" Multiplicity="0..1" />
+    <End Role="Pre_Error" Type="Self.Pre_Error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Error_Falla">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pre_Error">
+        <PropertyRef Name="Id_Error" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pre_Error_modelo">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="Pre_Error" Type="Self.Pre_Error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pre_Error">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TECN_PROYECTO_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="TECN_PROYECTO" Type="Self.TECN_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TECN_PROYECTO">
+        <PropertyRef Name="Id_proy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TECN_PROYECTO_tecn">
+    <End Role="TECNICO" Type="Self.TECNICO" Multiplicity="0..1" />
+    <End Role="TECN_PROYECTO" Type="Self.TECN_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TECNICO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TECN_PROYECTO">
+        <PropertyRef Name="Id_tecn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ToolBoxModelStoreContainer">
+    <EntitySet Name="COORDINADOR" EntityType="Self.COORDINADOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EQUIPOS" EntityType="Self.EQUIPOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Error_Falla" EntityType="Self.Error_Falla" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HERRA_PROY" EntityType="Self.HERRA_PROY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HERRAMIENTA" EntityType="Self.HERRAMIENTA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pre_Error" EntityType="Self.Pre_Error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROYECTO" EntityType="Self.PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TECN_PROYECTO" EntityType="Self.TECN_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TECNICO" EntityType="Self.TECNICO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_Coord" Association="Self.fk_Coord">
+      <End Role="COORDINADOR" EntitySet="COORDINADOR" />
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EQUIPOS_mode" Association="Self.fk_EQUIPOS_mode">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EQUIPOS_proy" Association="Self.fk_EQUIPOS_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_HERRA_PROY_herr" Association="Self.fk_HERRA_PROY_herr">
+      <End Role="HERRAMIENTA" EntitySet="HERRAMIENTA" />
+      <End Role="HERRA_PROY" EntitySet="HERRA_PROY" />
+    </AssociationSet>
+    <AssociationSet Name="fk_HERRA_PROY_proy" Association="Self.fk_HERRA_PROY_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="HERRA_PROY" EntitySet="HERRA_PROY" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MODELO_marca" Association="Self.fk_MODELO_marca">
+      <End Role="MARCA" EntitySet="MARCA" />
+      <End Role="MODELO" EntitySet="MODELO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pre_Error_Error" Association="Self.fk_Pre_Error_Error">
+      <End Role="Error_Falla" EntitySet="Error_Falla" />
+      <End Role="Pre_Error" EntitySet="Pre_Error" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pre_Error_modelo" Association="Self.fk_Pre_Error_modelo">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="Pre_Error" EntitySet="Pre_Error" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TECN_PROYECTO_proy" Association="Self.fk_TECN_PROYECTO_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="TECN_PROYECTO" EntitySet="TECN_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TECN_PROYECTO_tecn" Association="Self.fk_TECN_PROYECTO_tecn">
+      <End Role="TECNICO" EntitySet="TECNICO" />
+      <End Role="TECN_PROYECTO" EntitySet="TECN_PROYECTO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

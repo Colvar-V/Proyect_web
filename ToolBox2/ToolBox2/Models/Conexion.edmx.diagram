@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03e1b633c34a4517bfe6e4c440f57f0f" Name="Diagram1">
+        <EntityTypeShape EntityType="ToolBoxModel.COORDINADOR" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.EQUIPOS" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.Error_Falla" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.HERRA_PROY" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.HERRAMIENTA" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.MARCA" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.MODELO" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.Pre_Error" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.PROYECTO" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.TECN_PROYECTO" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToolBoxModel.TECNICO" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ToolBoxModel.fk_Coord" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_EQUIPOS_mode" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_EQUIPOS_proy" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_Pre_Error_Error" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_HERRA_PROY_herr" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_HERRA_PROY_proy" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_MODELO_marca" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_Pre_Error_modelo" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_TECN_PROYECTO_proy" ManuallyRouted="false" />
+        <AssociationConnector Association="ToolBoxModel.fk_TECN_PROYECTO_tecn" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

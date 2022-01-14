@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Ecopetrol";
+    Layout = "~/Views/Shared/CoordLayout.cshtml";
+}
+
+<div class="container fondotext">
+    <div class="eco">
+        <h2>Ecopetrol</h2>
+        <br />
+    </div>
+    <div>
+        <h3>Personal</h3>
+        <div class="col-md-12">
+            <h4>Coordinador</h4>
+        </div>
+        <div class="col-md-11">
+            <table id="Coord"></table>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    ListaCoord();
+                })
+            </script>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <h4>Tecnicos</h4>
+        </div>
+        <div class="col-md-11">
+            <table id="Tec"></table>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    ListaTec();
+                })
+            </script>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-12">
+        <p>
+            La herramientas que se encuentra en el proyecto Ecopetrol.
+        </p>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <h3>Equipos</h3>
+    </div>
+    <div class="col-md-12">
+        <table id="gri"></table>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                ListaEquipo();
+            })
+        </script>
+    </div>
+    <br />
+</div>

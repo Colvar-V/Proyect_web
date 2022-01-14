@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "AgregarHerramientas";
+    Layout = "~/Views/Shared/CoordLayout.cshtml";
+}
+<div class="container fondotext">
+    <h2>Lista Herramientas</h2>
+    <div>
+        <table id="grid"></table>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                ListaHerra();
+            })
+        </script>
+    </div>
+    <br />
+    <div>
+        <input type="button" class="btn-primary" value="Agregar Herramienta" onclick="Agregarherr()" />
+    </div>
+    <br />
+</div>

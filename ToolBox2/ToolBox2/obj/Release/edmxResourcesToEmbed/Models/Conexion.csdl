@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ToolBoxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="COORDINADOR">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contraseña" Type="Binary" MaxLength="200" FixedLength="false" />
+    <Property Name="Telefono" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PROYECTO" Relationship="Self.fk_Coord" FromRole="COORDINADOR" ToRole="PROYECTO" />
+  </EntityType>
+  <EntityType Name="EQUIPOS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Serial" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Mode" Type="Int32" />
+    <Property Name="Id_Proyecto" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MODELO" Relationship="Self.fk_EQUIPOS_mode" FromRole="EQUIPOS" ToRole="MODELO" />
+    <NavigationProperty Name="PROYECTO" Relationship="Self.fk_EQUIPOS_proy" FromRole="EQUIPOS" ToRole="PROYECTO" />
+  </EntityType>
+  <EntityType Name="Error_Falla">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pre_Error" Relationship="Self.fk_Pre_Error_Error" FromRole="Error_Falla" ToRole="Pre_Error" />
+  </EntityType>
+  <EntityType Name="HERRA_PROY">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Proy" Type="Int32" />
+    <Property Name="Id_Herr" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HERRAMIENTA" Relationship="Self.fk_HERRA_PROY_herr" FromRole="HERRA_PROY" ToRole="HERRAMIENTA" />
+    <NavigationProperty Name="PROYECTO" Relationship="Self.fk_HERRA_PROY_proy" FromRole="HERRA_PROY" ToRole="PROYECTO" />
+  </EntityType>
+  <EntityType Name="HERRAMIENTA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HERRA_PROY" Relationship="Self.fk_HERRA_PROY_herr" FromRole="HERRAMIENTA" ToRole="HERRA_PROY" />
+  </EntityType>
+  <EntityType Name="MARCA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cel_soporte" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="MODELO" Relationship="Self.fk_MODELO_marca" FromRole="MARCA" ToRole="MODELO" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Modelo1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Marca" Type="Int32" Nullable="false" />
+    <Property Name="Componentes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EQUIPOS" Relationship="Self.fk_EQUIPOS_mode" FromRole="MODELO" ToRole="EQUIPOS" />
+    <NavigationProperty Name="MARCA" Relationship="Self.fk_MODELO_marca" FromRole="MODELO" ToRole="MARCA" />
+    <NavigationProperty Name="Pre_Error" Relationship="Self.fk_Pre_Error_modelo" FromRole="MODELO" ToRole="Pre_Error" />
+  </EntityType>
+  <EntityType Name="Pre_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id_Modelo" Type="Int32" />
+    <Property Name="Id_Error" Type="Int32" />
+    <NavigationProperty Name="Error_Falla" Relationship="Self.fk_Pre_Error_Error" FromRole="Pre_Error" ToRole="Error_Falla" />
+    <NavigationProperty Name="MODELO" Relationship="Self.fk_Pre_Error_modelo" FromRole="Pre_Error" ToRole="MODELO" />
+  </EntityType>
+  <EntityType Name="PROYECTO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Coord" Type="Int32" />
+    <Property Name="Informacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="COORDINADOR" Relationship="Self.fk_Coord" FromRole="PROYECTO" ToRole="COORDINADOR" />
+    <NavigationProperty Name="EQUIPOS" Relationship="Self.fk_EQUIPOS_proy" FromRole="PROYECTO" ToRole="EQUIPOS" />
+    <NavigationProperty Name="HERRA_PROY" Relationship="Self.fk_HERRA_PROY_proy" FromRole="PROYECTO" ToRole="HERRA_PROY" />
+    <NavigationProperty Name="TECN_PROYECTO" Relationship="Self.fk_TECN_PROYECTO_proy" FromRole="PROYECTO" ToRole="TECN_PROYECTO" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TECN_PROYECTO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_proy" Type="Int32" />
+    <Property Name="Id_tecn" Type="Int32" />
+    <NavigationProperty Name="PROYECTO" Relationship="Self.fk_TECN_PROYECTO_proy" FromRole="TECN_PROYECTO" ToRole="PROYECTO" />
+    <NavigationProperty Name="TECNICO" Relationship="Self.fk_TECN_PROYECTO_tecn" FromRole="TECN_PROYECTO" ToRole="TECNICO" />
+  </EntityType>
+  <EntityType Name="TECNICO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contraseña" Type="Binary" MaxLength="200" FixedLength="false" Nullable="false" />
+    <Property Name="Telefono" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TECN_PROYECTO" Relationship="Self.fk_TECN_PROYECTO_tecn" FromRole="TECNICO" ToRole="TECN_PROYECTO" />
+  </EntityType>
+  <Association Name="fk_Coord">
+    <End Role="COORDINADOR" Type="Self.COORDINADOR" Multiplicity="0..1" />
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COORDINADOR">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PROYECTO">
+        <PropertyRef Name="Id_Coord" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EQUIPOS_mode">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EQUIPOS">
+        <PropertyRef Name="Id_Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EQUIPOS_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="EQUIPOS" Type="Self.EQUIPOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EQUIPOS">
+        <PropertyRef Name="Id_Proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pre_Error_Error">
+    <End Role="Error_Falla" Type="Self.Error_Falla" Multiplicity="0..1" />
+    <End Role="Pre_Error" Type="Self.Pre_Error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Error_Falla">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pre_Error">
+        <PropertyRef Name="Id_Error" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_HERRA_PROY_herr">
+    <End Role="HERRAMIENTA" Type="Self.HERRAMIENTA" Multiplicity="0..1" />
+    <End Role="HERRA_PROY" Type="Self.HERRA_PROY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HERRAMIENTA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HERRA_PROY">
+        <PropertyRef Name="Id_Herr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_HERRA_PROY_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="HERRA_PROY" Type="Self.HERRA_PROY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HERRA_PROY">
+        <PropertyRef Name="Id_Proy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MODELO_marca">
+    <End Role="MARCA" Type="Self.MARCA" Multiplicity="1" />
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MARCA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MODELO">
+        <PropertyRef Name="Id_Marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pre_Error_modelo">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="Pre_Error" Type="Self.Pre_Error" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pre_Error">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TECN_PROYECTO_proy">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="0..1" />
+    <End Role="TECN_PROYECTO" Type="Self.TECN_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TECN_PROYECTO">
+        <PropertyRef Name="Id_proy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TECN_PROYECTO_tecn">
+    <End Role="TECNICO" Type="Self.TECNICO" Multiplicity="0..1" />
+    <End Role="TECN_PROYECTO" Type="Self.TECN_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TECNICO">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TECN_PROYECTO">
+        <PropertyRef Name="Id_tecn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ToolBoxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COORDINADOR" EntityType="Self.COORDINADOR" />
+    <EntitySet Name="EQUIPOS" EntityType="Self.EQUIPOS" />
+    <EntitySet Name="Error_Falla" EntityType="Self.Error_Falla" />
+    <EntitySet Name="HERRA_PROY" EntityType="Self.HERRA_PROY" />
+    <EntitySet Name="HERRAMIENTA" EntityType="Self.HERRAMIENTA" />
+    <EntitySet Name="MARCA" EntityType="Self.MARCA" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" />
+    <EntitySet Name="Pre_Error" EntityType="Self.Pre_Error" />
+    <EntitySet Name="PROYECTO" EntityType="Self.PROYECTO" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TECN_PROYECTO" EntityType="Self.TECN_PROYECTO" />
+    <EntitySet Name="TECNICO" EntityType="Self.TECNICO" />
+    <AssociationSet Name="fk_Coord" Association="Self.fk_Coord">
+      <End Role="COORDINADOR" EntitySet="COORDINADOR" />
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EQUIPOS_mode" Association="Self.fk_EQUIPOS_mode">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EQUIPOS_proy" Association="Self.fk_EQUIPOS_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="EQUIPOS" EntitySet="EQUIPOS" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pre_Error_Error" Association="Self.fk_Pre_Error_Error">
+      <End Role="Error_Falla" EntitySet="Error_Falla" />
+      <End Role="Pre_Error" EntitySet="Pre_Error" />
+    </AssociationSet>
+    <AssociationSet Name="fk_HERRA_PROY_herr" Association="Self.fk_HERRA_PROY_herr">
+      <End Role="HERRAMIENTA" EntitySet="HERRAMIENTA" />
+      <End Role="HERRA_PROY" EntitySet="HERRA_PROY" />
+    </AssociationSet>
+    <AssociationSet Name="fk_HERRA_PROY_proy" Association="Self.fk_HERRA_PROY_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="HERRA_PROY" EntitySet="HERRA_PROY" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MODELO_marca" Association="Self.fk_MODELO_marca">
+      <End Role="MARCA" EntitySet="MARCA" />
+      <End Role="MODELO" EntitySet="MODELO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pre_Error_modelo" Association="Self.fk_Pre_Error_modelo">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="Pre_Error" EntitySet="Pre_Error" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TECN_PROYECTO_proy" Association="Self.fk_TECN_PROYECTO_proy">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="TECN_PROYECTO" EntitySet="TECN_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TECN_PROYECTO_tecn" Association="Self.fk_TECN_PROYECTO_tecn">
+      <End Role="TECNICO" EntitySet="TECNICO" />
+      <End Role="TECN_PROYECTO" EntitySet="TECN_PROYECTO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

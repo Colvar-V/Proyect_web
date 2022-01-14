@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Equipos";
+    Layout = "~/Views/Shared/CoordLayout.cshtml";
+}
+
+<div class="container fondotext">
+    <h2>Lista de equipos en los proyectos</h2>
+    <div>
+        <table id="gri"></table>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                ListaEquipo();
+            })
+        </script>
+    </div>
+    <br />
+    <br />
+</div>

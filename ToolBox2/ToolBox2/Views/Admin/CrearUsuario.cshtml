@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "CrearUsuario";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+<div class="fondotext">
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/Pages/Usuarios.js"></script>
+    <div>
+        <h2>Creacion de usuarios</h2>
+    </div>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" id="Nombre" class="form-control" name="Nombre">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Cargo</label>
+                <input type="text" id="Cargo" class="form-control" name="Cargo">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Telefono</label>
+                <input type="text" id="Telefono" class="form-control" name="Telefono">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Correo</label>
+                <input type="text" id="Correo" class="form-control" name="Correo">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Usuario</label>
+                <input type="text" id="Usuario" class="form-control" name="Usuario">
+            </div>
+            <div class="form-group col-md-2">
+                <label>Contraseña</label>
+                <input type="password" id="Contrasena" class="form-control" name="Contrasena">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Id de Proyecto</label>
+                <input type="text" id="Id_proy" class="form-control" name="Id_proy">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="alert alert-primary" role="alert">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="container">
+        <input type="button" value="Registro" class="btn btn-primary" onclick="InsertUser()">
+    </div>
+    <br />
+    <br />
+</div>

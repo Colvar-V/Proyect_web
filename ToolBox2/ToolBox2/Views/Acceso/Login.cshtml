@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="~/css/Estilo_login.css" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/Pages/AccesoJS.js"></script>
+    <title>ToolBox</title>
+</head>
+<body style="background: transparent">
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <div>
+                <h1>ToolBox</h1>
+            </div>
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Imagenes/Icon_Login.png" id="icon" class="img-circle" alt="Cinque Terre" width="284" height="216"/>
+            </div>
+
+            <!-- Login Form -->
+            <form>
+                <input type="text" id="Usuario" name="Usuario" class="fadeIn second" placeholder="Usuario">
+                <input type="password" id="password" name="password" class="fadeIn third" placeholder="Contraseña">
+                <input type="button" class="fadeIn fourth" onclick="verificar()" value="Ingresar">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

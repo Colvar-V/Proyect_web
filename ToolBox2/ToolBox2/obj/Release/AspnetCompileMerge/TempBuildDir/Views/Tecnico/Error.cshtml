@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/TCLayout.cshtml";
+}
+
+<script type="text/javascript" charset="utf-8" src="~/Scripts/Pages/ErroresJS.js"></script>
+
+<div class="fondotext container">
+    <h2>Error</h2>
+    <div class="container">
+        <div class="row">
+            <label>Resistro de Errores</label>
+        </div>
+        <form id="Registro">
+            <div class="col-md-12">
+                <label>Nombre</label>
+                <input type="text" id="Nombre" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <label>IdModelo</label>
+                <input type="text" id="IdModelo" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <label>Descripción</label>
+                <textarea id="Descripcion" class="form-control"></textarea>
+            </div>
+            <div class="col-md-12">
+                <label>Solución</label>
+                <textarea id="Solucion" class="form-control"></textarea>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary" onclick="InsertError()" />
+            </div>
+        </form>
+
+    </div>
+    <div class="container">
+        <h3>Errores comunes en los equipos</h3>
+        <div class="col-md-12">
+            <table id="Errores"></table>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    ListaError();
+                })
+            </script>
+        </div>
+    </div>
+    <br />
+</div>
